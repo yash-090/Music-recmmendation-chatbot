@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood-Based Music Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #336699;
+            color: white;
+            padding: 20px;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #336699;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mood-Based Music Recommendation</h1>
+    <form method="POST">
+        <label for="user_input">How are you feeling today?</label>
+        <input type="text" name="user_input" id="user_input" required>
+        <br>
+        <button type="submit">Get Music Recommendations</button>
+    </form>
+    {% if mood %}
+        <p>Your mood is: {{ mood }}</p>
+        {% if recommendations %}
+            <p>Here are some {{ mood }} songs for you:</p>
+            <ul>
+                {% for song in recommendations %}
+                    <li>{{ song }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No music recommendations available for this mood.</p>
+        {% endif %}
+    {% endif }
+</body>
+</html>
